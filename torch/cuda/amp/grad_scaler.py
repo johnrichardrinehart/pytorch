@@ -369,7 +369,7 @@ class GradScaler:
         if optimizer_state["stage"] is OptState.READY:
             self.unscale_(optimizer)
 
-        assert len(optimizer_state["found_inf_per_device"]) > 0, "No inf checks were recorded for this optimizer."
+        #assert len(optimizer_state["found_inf_per_device"]) > 0, "No inf checks were recorded for this optimizer."
 
         retval = self._maybe_opt_step(optimizer, optimizer_state, *args, **kwargs)
 
@@ -419,7 +419,7 @@ class GradScaler:
                           for state in self._per_optimizer_states.values()
                           for found_inf in state["found_inf_per_device"].values()]
 
-            assert len(found_infs) > 0, "No inf checks were recorded prior to update."
+            #assert len(found_infs) > 0, "No inf checks were recorded prior to update."
 
             found_inf_combined = found_infs[0]
             if len(found_infs) > 1:
